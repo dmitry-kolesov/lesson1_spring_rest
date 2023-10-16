@@ -4,3 +4,4 @@
 /spring-data-rest-hateoas/target/
 /spring-data-rest-webclient/target/
 /swagger/target/
+/.idea/*
