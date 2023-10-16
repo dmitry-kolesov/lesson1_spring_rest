@@ -1,0 +1,49 @@
+###
+GET http://localhost:8081/countries
+Accept: application/json
+
+###
+GET http://localhost:8081/countries/AU1
+Accept: application/json
+
+###
+GET http://localhost:8081/filter/countries/AU1
+Accept: application/json
+
+
+###
+GET http://localhost:8081/persons
+
+###
+GET http://localhost:8081/persons/4
+
+###
+PATCH http://localhost:8081/persons/4
+Content-Type: application/json
+
+{
+  "name": "Sophia Jones 2nd",
+  "country": "AU",
+  "isRegistered": "true"
+}
+
+###
+DELETE http://localhost:8081/persons/4
+
+###
+POST http://localhost:8081/persons
+Content-Type: application/json
+
+{
+  "name": "John Smith"
+}
+
+###
+GET http://localhost:8081/persons/4
+If-None-Match: "094b062976adfe1c36f07f7722a2ff562"
+
+### not supported by ShallowEtagHeaderFilter
+GET http://localhost:8081/persons/4
+If-Match: "094b062976adfe1c36f07f7722a2ff562"
+
+

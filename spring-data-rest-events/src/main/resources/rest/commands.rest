@@ -1,0 +1,22 @@
+###
+POST http://localhost:8081/persons
+Content-Type: application/json
+
+{
+  "name": "John Jones"
+}
+
+###
+DELETE http://localhost:8081/persons/4
+
+###
+GET http://localhost:8081/persons?page=0&size=20"
+Content-Type: application/json
+
+###
+PUT http://localhost:8081/persons/20/country
+Content-Type: application/json
+
+[
+  {"codeName" : "AU"}
+]

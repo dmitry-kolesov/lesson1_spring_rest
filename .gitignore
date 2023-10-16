@@ -1,0 +1,6 @@
+# Project exclude paths
+/spring-data-rest/target/
+/spring-data-rest-events/target/
+/spring-data-rest-hateoas/target/
+/spring-data-rest-webclient/target/
+/swagger/target/
