@@ -24,21 +24,21 @@ import java.util.function.Predicate;
 @Configuration
 public class RestConfiguration implements RepositoryRestConfigurer {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurerAdapter() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**");
+//            }
+//        };
+//    }
 
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .tags(new Tag("Employee Entity",
-                        "Employee entities repository"))
+//                .tags(new Tag("Employee Entity",
+//                        "Employee entities repository"))
                 .tags(new Tag("Employee Controller",
                         "Utility methods for Employee entities"))
                 .select()

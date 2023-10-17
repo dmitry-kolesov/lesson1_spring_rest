@@ -25,13 +25,15 @@ public class WebClientPersonsTest {
                 .block();
         ClientResponse.Headers headers = clientResponse.headers();
 
-        Map responseMap = clientResponse.body(
-                BodyExtractors.toMono(Map.class)).block();
-        System.out.println(responseMap);
+        Person person = clientResponse.bodyToMono(Person.class).block();
+                //.body(
+        //        BodyExtractors.toMono(Map.class))
+        //.block();
+        System.out.println(person);
 
         assertAll(
-                () -> assertEquals("John Smith", responseMap.get("name")),
-                () -> assertEquals(false, responseMap.get("registered")),
+                () -> assertEquals("John Smith", person.getName()),
+                () -> assertEquals(false, person.isRegistered()),
                 () -> assertEquals(MediaType.APPLICATION_JSON, headers.contentType().get()),
                 () -> assertEquals(HttpStatus.OK, clientResponse.statusCode()));
     }
@@ -42,13 +44,17 @@ public class WebClientPersonsTest {
         Person person = new Person();
         person.setName("Michael Stephens");
         person.setCountry(new Country("Australia", "AU"));
-        ClientResponse clientResponse = webClient.post()
+        ClientResponse clientResponse = WebClient
+                .builder()
+                .baseUrl("http://localhost:8081")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build()
+                .post()
                 .uri("/persons")
-                .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(person))
                 .exchange()
                 .block();
-
+System.out.println(clientResponse);
         assertEquals(HttpStatus.CREATED, clientResponse.statusCode());
     }
 
